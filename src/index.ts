@@ -1,31 +1,50 @@
-import Vue from "vue";
-import HeaderComponent from "./components/Header.vue";
-import BlogPostComponent from "./components/BlogPost.vue";
+import Vue from 'vue';
 
-let v = new Vue({
-    el: "#app",
+// Components
+import HeaderComponent from './components/Header.vue';
+import BlogPostComponent from './components/BlogPost.vue';
+
+// API
+import { getBlogPosts, getHeader } from './api/requests.ts';
+
+new Vue({
+    el: '#app',
     template: `
     <div>
         <header-component
-            :color="color"
-            :colors="colors"
-            v-on:change-color="changeColor"
+            :color='color'
+            :title='header'
+            v-on:change-color='changeColor'
         />
-        <blog-post-component :color="color" />
+        <div class='flex flex-wrap'>
+            <blog-post-component
+                v-for='(blogPost, index) in blogPosts'
+                :title='blogPost.title'
+                :publishDate='blogPost.publishDate'
+                :authors='blogPost.authors'
+                :slug='blogPost.slug'
+                :color='color'
+                :key='index'
+            />
+        </div>
     </div>
     `,
     data: {
-        color: 'pink',
-        colors: ['pink', 'orange', 'green', 'red']
+        color: 'orange',
+        blogPosts: null,
+        header: null
     },
     components: {
         HeaderComponent,
         BlogPostComponent
     },
     methods: {
-        changeColor(color: string) {
-            if (this.colors.indexOf(color) !== -1) this.color = color;
-            else console.log('This color is not available, sorry!');
-        }
+        changeColor(color: string) { this.color = color; }
+    },
+    mounted() {
+        getBlogPosts()
+            .then(blogPosts => this.blogPosts = blogPosts);
+        getHeader()
+            .then(header => this.header = header);
     }
 });
