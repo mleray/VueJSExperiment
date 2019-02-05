@@ -1,24 +1,29 @@
 <template>
-    <select v-model="selected" v-on:change="changeColor">
-      <option v-for="color in colors" :value="color">
+    <select v-model='selected' v-on:change='changeColor'>
+      <option v-for='color in colors' :value='color'>
           {{ color }}
       </option>
     </select>
 </template>
 
-<script lang="ts">
-import Vue from "vue";
+<script lang='ts'>
+import Vue from 'vue';
 
 export default Vue.extend({
-    props: ['colors', 'selectedColor'],
+    props: {
+        selectedColor: String
+    },
     data() {
         return {
             selected: this.selectedColor,
+            colors: ['pink', 'orange', 'green', 'red']
         }
     },
     methods: {
         changeColor() {
-            this.$parent.$emit('change-color', this.selected);
+            if (this.colors.indexOf(this.selected) !== -1) {
+                this.$parent.$emit('change-color', this.selected);
+            } else console.log('This color is not available, sorry!');
         }
     }
 });
