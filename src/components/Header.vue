@@ -1,19 +1,22 @@
 <template>
-    <div class="header" :style="{ backgroundColor: color }">
-        <span class="title">Frontend development tips</span>
-        <color-select
-            :colors="colors"
-            :selectedColor="color"
-        />
+    <div class='header' :style='{ backgroundColor: color }'>
+        <h3>{{ title }}</h3>
+        <color-select :selectedColor='color' />
     </div>
 </template>
 
-<script lang="ts">
-import Vue from "vue";
+<script lang='ts'>
+import Vue from 'vue';
 import ColorSelect from './ColorSelect.vue';
 
 export default Vue.extend({
-    props: ['color', 'colors'],
+    props: {
+        color: String,
+        title: {
+            type: String,
+            default: 'Front-end development blog'
+        }
+    },
     components: {
         ColorSelect
     },
@@ -25,5 +28,8 @@ export default Vue.extend({
     padding: 20px;
     display: flex;
     justify-content: space-between;
+}
+.header h3 {
+    margin: 0;
 }
 </style>
