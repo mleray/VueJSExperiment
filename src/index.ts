@@ -16,7 +16,7 @@ let v = new Vue({
     `,
     data: {
         color: 'pink',
-        colors: ['pink', 'yellow', 'green', 'red']
+        colors: ['pink', 'orange', 'green', 'red']
     },
     components: {
         HeaderComponent,
