@@ -1,13 +1,13 @@
 <template>
     <div class='header' :style='{ backgroundColor: color }'>
         <h3>{{ title }}</h3>
-        <color-select :selectedColor='color' />
+        <color-select-component :selectedColor='color' />
     </div>
 </template>
 
 <script lang='ts'>
 import Vue from 'vue';
-import ColorSelect from './ColorSelect.vue';
+import ColorSelectComponent from './ColorSelect.vue';
 
 export default Vue.extend({
     props: {
@@ -18,7 +18,7 @@ export default Vue.extend({
         }
     },
     components: {
-        ColorSelect
+        ColorSelectComponent
     },
 });
 </script>

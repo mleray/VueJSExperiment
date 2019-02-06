@@ -5,7 +5,7 @@
             <h3 class='title' :style='{ color }'>{{ title }}</h3>
         </a>
         <div class='flex'>
-            <author
+            <author-component
                 v-for='(author, index) in authors'
                 :key='index'
                 :name='author.name'
@@ -18,7 +18,7 @@
 
 <script lang='ts'>
 import Vue from 'vue';
-import Author from './Author.vue';
+import AuthorComponent from './Author.vue';
 
 export default Vue.extend({
     props: {
@@ -34,13 +34,13 @@ export default Vue.extend({
         }
     },
     components: {
-        Author
+        AuthorComponent
     },
     computed: {
-        blogPostUrl() {
+        blogPostUrl(): string {
             return 'https://www.voorhoede.nl/en/blog/' + this.slug;
         },
-        viewsCounter() {
+        viewsCounter(): string {
             return 'Views: ' + this.views;
         }
     }

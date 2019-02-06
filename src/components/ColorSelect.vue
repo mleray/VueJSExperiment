@@ -20,7 +20,7 @@ export default Vue.extend({
         }
     },
     methods: {
-        changeColor() {
+        changeColor(): void {
             if (this.colors.indexOf(this.selected) !== -1) {
                 this.$parent.$emit('change-color', this.selected);
             } else console.log('This color is not available, sorry!');
