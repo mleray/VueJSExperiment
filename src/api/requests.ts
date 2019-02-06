@@ -1,6 +1,6 @@
-import axios from 'axios';
+import axios from "axios";
 
-const apiUrl = 'https://voorhoede-colibri-api-rxmnpmphxz.now.sh/api/v1';
+const apiUrl = "https://voorhoede-colibri-api-rxmnpmphxz.now.sh/api/v1";
 
 function getBlogPosts() {
     return axios

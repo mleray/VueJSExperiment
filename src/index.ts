@@ -1,36 +1,36 @@
-import Vue from 'vue';
+import Vue from "vue";
 
 // Components
-import HeaderComponent from './components/Header.vue';
-import BlogPostComponent from './components/BlogPost.vue';
+import HeaderComponent from "./components/Header.vue";
+import BlogPostComponent from "./components/BlogPost.vue";
 
 // API
-import { getBlogPosts, getHeader } from './api/requests.ts';
+import { getBlogPosts, getHeader } from "./api/requests.ts";
 
 new Vue({
-    el: '#app',
+    el: "#app",
     template: `
     <div>
         <header-component
-            :color='color'
-            :title='header'
-            v-on:change-color='changeColor'
+            :color="color"
+            :title="header"
+            v-on:change-color="changeColor"
         />
-        <div class='flex flex-wrap'>
+        <div class="flex flex-wrap">
             <blog-post-component
-                v-for='(blogPost, index) in blogPosts'
-                :title='blogPost.title'
-                :publishDate='blogPost.publishDate'
-                :authors='blogPost.authors'
-                :slug='blogPost.slug'
-                :color='color'
-                :key='index'
+                v-for="(blogPost, index) in blogPosts"
+                :title="blogPost.title"
+                :publishDate="blogPost.publishDate"
+                :authors="blogPost.authors"
+                :slug="blogPost.slug"
+                :color="color"
+                :key="index"
             />
         </div>
     </div>
     `,
     data: {
-        color: 'orange',
+        color: "orange",
         blogPosts: null,
         header: null
     },

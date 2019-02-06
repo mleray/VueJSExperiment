@@ -1,47 +1,78 @@
 <template>
-    <div class='blog-post' :style='{ borderColor: color }'>
-        <p class='date'>{{ publishDate }}</p>
-        <a v-on:click='views += 1' :href='blogPostUrl' target='_blank'>
-            <h3 class='title' :style='{ color }'>{{ title }}</h3>
-        </a>
-        <div class='flex'>
-            <author-component
-                v-for='(author, index) in authors'
-                :key='index'
-                :name='author.name'
-                :imageUrl='author.image.url'
-            />
-        </div>
-        <p class='views'>{{ viewsCounter }}</p>
+  <div
+    class="blog-post"
+    :style="{ borderColor: color }"
+  >
+    <p class="date">
+      {{ publishDate }}
+    </p>
+    <a
+      :href="blogPostUrl"
+      target="_blank"
+      @click="views += 1"
+    >
+      <h3
+        class="title"
+        :style="{ color }"
+      >
+        {{ title }}
+      </h3>
+    </a>
+    <div class="flex">
+      <author-component
+        v-for="(author, index) in authors"
+        :key="index"
+        :name="author.name"
+        :image-url="author.image.url"
+      />
     </div>
+    <p class="views">
+      {{ viewsCounter }}
+    </p>
+  </div>
 </template>
 
-<script lang='ts'>
-import Vue from 'vue';
-import AuthorComponent from './Author.vue';
+<script lang="ts">
+import Vue from "vue";
+import AuthorComponent from "./Author.vue";
 
 export default Vue.extend({
+    components: {
+        AuthorComponent
+    },
     props: {
-        title: String,
-        color: String,
-        publishDate: String,
-        authors: Array,
-        slug: String
+        title: {
+            type: String,
+            default: "Have you tried turning it off and on again?"
+        },
+        color: {
+            type: String,
+            required: true
+        },
+        publishDate: {
+            type: String,
+            default: "12/12/2012"
+        },
+        authors: {
+            type: Array,
+            default: () => []
+        },
+        slug: {
+            type: String,
+            default: "a-random-article"
+        }
     },
     data() {
         return {
             views: 0
         }
     },
-    components: {
-        AuthorComponent
-    },
     computed: {
-        blogPostUrl(): string {
-            return 'https://www.voorhoede.nl/en/blog/' + this.slug;
+        blogPostUrl() {
+            return "https://www.voorhoede.nl/en/blog/" + this.slug;
         },
-        viewsCounter(): string {
-            return 'Views: ' + this.views;
+        viewsCounter() {
+            return "Views: " + this.views;
         }
     }
 });

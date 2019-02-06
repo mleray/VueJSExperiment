@@ -1,21 +1,27 @@
 <template>
-    <div class='author'>
-        <img
-            :src='imageUrl'
-            height='60'
-            width='60'
-        />
-        <p>{{ name }}</p>
-    </div>
+  <div class="author">
+    <img
+      :src="imageUrl"
+      height="60"
+      width="60"
+    >
+    <p>{{ name }}</p>
+  </div>
 </template>
 
-<script lang='ts'>
-import Vue from 'vue';
+<script lang="ts">
+import Vue from "vue";
 
 export default Vue.extend({
     props: {
-        name: String,
-        imageUrl: String
+        name: {
+            type: String,
+            default: "Jon Snow"
+        },
+        imageUrl: {
+            type: String,
+            default: "https://www.placecage.com/200/300"
+        }
     }
 });
 </script>

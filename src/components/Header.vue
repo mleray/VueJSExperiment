@@ -1,24 +1,30 @@
 <template>
-    <div class='header' :style='{ backgroundColor: color }'>
-        <h3>{{ title }}</h3>
-        <color-select-component :selectedColor='color' />
-    </div>
+  <div
+    class="header"
+    :style="{ backgroundColor: color }"
+  >
+    <h3>{{ title }}</h3>
+    <color-select-component :selected-color="color" />
+  </div>
 </template>
 
-<script lang='ts'>
-import Vue from 'vue';
-import ColorSelectComponent from './ColorSelect.vue';
+<script lang="ts">
+import Vue from "vue";
+import ColorSelectComponent from "./ColorSelect.vue";
 
 export default Vue.extend({
-    props: {
-        color: String,
-        title: {
-            type: String,
-            default: 'Front-end development blog'
-        }
-    },
     components: {
         ColorSelectComponent
+    },
+    props: {
+        color: {
+            type: String,
+            required: true
+        },
+        title: {
+            type: String,
+            default: "Front-end development blog"
+        }
     },
 });
 </script>
